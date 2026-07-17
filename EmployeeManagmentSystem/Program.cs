@@ -1,4 +1,4 @@
-﻿namespace EmployeeManagmentSystem
+﻿namespace EmployeeManagementSystem
 {
     public class Program
     {

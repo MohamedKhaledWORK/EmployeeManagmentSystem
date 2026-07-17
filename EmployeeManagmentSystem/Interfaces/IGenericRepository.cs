@@ -6,12 +6,14 @@ using System.Threading.Tasks;
 
 namespace EmployeeManagementSystem.Interfaces
 {
-    public interface IGenericRepository
+    public interface IGenericRepository<T>
     {
-        public void Add<T>(T entity);
-        public void Update<T>(T entity);
-        public void Delete<T>(T entity);
-        public T GetById<T>(int id);
-        public IQueryable<T> GetAll<T>();
+        public void Add(T entity);
+        public void Update(T entity);
+        public void Delete(T entity);
+        public T GetById(int id);
+        public IQueryable<T> GetAll();
+        public IQueryable<T> FindWhere(Func<T,bool> predicate);
+
     }
 }

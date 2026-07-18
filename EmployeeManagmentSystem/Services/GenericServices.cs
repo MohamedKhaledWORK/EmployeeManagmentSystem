@@ -1,4 +1,5 @@
-﻿using EmployeeManagementSystem.Models;
+﻿using EmployeeManagementSystem.Exporting;
+using EmployeeManagementSystem.Models;
 using EmployeeManagementSystem.Repository;
 using EmployeeManagementSystem.UI;
 using System;
@@ -11,6 +12,7 @@ namespace EmployeeManagementSystem.Services
 {
     public static class GenericServices
     {
+        public static Exporter<Employee> Exporter= new Exporter<Employee>();
         public static void HandleOperation<T>(int operationChoice, GenericRepository<T> repo, Func<T> add)
            where T : BaseClass
         {
@@ -57,6 +59,7 @@ namespace EmployeeManagementSystem.Services
                         {
                             Console.WriteLine(result);
                         }
+                       
                     }
                     break;
 
@@ -69,7 +72,15 @@ namespace EmployeeManagementSystem.Services
                     }
                     foreach (var asset in all)
                         Console.WriteLine(asset);
+                    string exportChoice = SystemFlow.ReadNonEmpty("Do You Want To Export (Y/N)");
+                    if (exportChoice.Equals("Y", StringComparison.OrdinalIgnoreCase))
+                    {
+                        Exporter.SetStrategy(new JsonExportStrategy<Employee>());
+                        Exporter.Export(all as List<Employee>, "employees.json");
+
+                    }
                     break;
+             
             }
 
         }

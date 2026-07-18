@@ -34,7 +34,6 @@ namespace EmployeeManagementSystem.UI
                     Console.WriteLine("Exiting the system. Goodbye!");
                     break;
                 }
-
                 GenericServices.HandleOperation(operationChoice, EmployeeRepo, AddEmployee);
 
             }

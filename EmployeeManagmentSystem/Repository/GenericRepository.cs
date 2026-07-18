@@ -1,14 +1,18 @@
-﻿using EmployeeManagementSystem.Interfaces;
+﻿using EmployeeManagementSystem.Exceptions;
+using EmployeeManagementSystem.Interfaces;
+using EmployeeManagementSystem.Models;
 using EmployeeManagementSystem.Storage;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace EmployeeManagementSystem.Repository
 {
-    public class GenericRepository<T> : IGenericRepository<T>
+    public class GenericRepository<T> : IGenericRepository<T> where T : BaseClass
     {
         private readonly SystemStorage<T> _storage;
 
@@ -18,32 +22,50 @@ namespace EmployeeManagementSystem.Repository
         }
         public void Add(T entity)
         {
-            throw new NotImplementedException();
+            if (entity == null) throw new ArgumentNullException();
+            var Entites = _storage.Load().ToList();
+            Entites.Add(entity);
+            _storage.Save(Entites);
         }
 
         public void Delete(T entity)
         {
-            throw new NotImplementedException();
+            var Entites = _storage.Load().ToList();
+            var entit = Entites.FirstOrDefault(x=> x.Id == entity.Id);
+            if (entit != null)
+            {
+                Entites.Remove(entity);
+                _storage.Save(Entites);
+            }
+            else 
+            { 
+               throw new ArgumentNullException(); 
+            }
         }
 
-        public IQueryable<T> FindWhere(Func<T, bool> predicate)
+        public IEnumerable<T> FindWhere(Func<T, bool> predicate)
         {
-            throw new NotImplementedException();
+           return _storage.Load().Where(predicate);
         }
 
-        public IQueryable<T> GetAll()
+        public IEnumerable<T> GetAll()
         {
-            throw new NotImplementedException();
+           return _storage.Load();
         }
 
         public T GetById(int id)
         {
-            throw new NotImplementedException();
+           return _storage.Load().FirstOrDefault(x=> x.Id == id);
         }
 
         public void Update(T entity)
         {
-            throw new NotImplementedException();
+            var Entities = _storage.Load().ToList();
+            var index = Entities.FindIndex(x => x.Id == entity.Id);
+            if (index == -1)
+                throw new InvalidOperationException($"{typeof(T).Name} with Id {entity.Id} not found.");
+            Entities[index] = entity;
+            _storage.Save(Entities);
         }
     }
 }

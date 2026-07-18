@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace EmployeeManagementSystem.Models
 {
-    public class Department
+    public class Department : BaseClass
     {
-        public int Id { get; set; }
         public string Name { get; set; }
 
         public override string ToString()

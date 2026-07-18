@@ -7,17 +7,9 @@ using System.Xml;
 
 namespace EmployeeManagementSystem.Models
 {
-    public class Employee
+    public class Employee : BaseClass
     {
-//-Employee ID(unique)
-//-Full Name notnull
-//-Email Address?
-//-Department relation 
-//-Job Title notnull
-//-Hire Date notnull
-//-Monthly Salary  decimal
-//-Employment Status(Active, Suspended, Resigned)  Enum
-        public int Id { get; set; }
+
         public string Name { get; set; }
         public string? Email { get; set; }
         public Department Department { get; set; }

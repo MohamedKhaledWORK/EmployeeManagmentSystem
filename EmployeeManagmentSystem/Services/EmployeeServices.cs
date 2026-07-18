@@ -8,5 +8,9 @@ namespace EmployeeManagementSystem.Services
 {
     public class EmployeeServices
     {
+        public EmployeeServices() 
+        {
+        
+        }
     }
 }

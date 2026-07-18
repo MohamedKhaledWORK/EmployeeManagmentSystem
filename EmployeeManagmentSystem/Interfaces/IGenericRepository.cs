@@ -12,8 +12,8 @@ namespace EmployeeManagementSystem.Interfaces
         public void Update(T entity);
         public void Delete(T entity);
         public T GetById(int id);
-        public IQueryable<T> GetAll();
-        public IQueryable<T> FindWhere(Func<T,bool> predicate);
+        public IEnumerable<T> GetAll();
+        public IEnumerable<T> FindWhere(Func<T,bool> predicate);
 
     }
 }

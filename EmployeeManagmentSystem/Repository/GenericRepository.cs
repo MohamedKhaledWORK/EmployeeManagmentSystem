@@ -16,8 +16,9 @@ namespace EmployeeManagementSystem.Repository
     {
         private readonly SystemStorage<T> _storage;
 
-        public GenericRepository(string fileName)
+        public GenericRepository(StorageResolver resolver)
         {
+            var fileName = resolver.Resolve<T>();
             _storage = new SystemStorage<T>(fileName);
         }
         public void Add(T entity)

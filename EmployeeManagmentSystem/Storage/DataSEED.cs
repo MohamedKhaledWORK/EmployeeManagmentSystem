@@ -34,6 +34,7 @@ namespace EmployeeManagementSystem.Storage
                     Id = 1,
                     Name = "John Doe",
                     JobTitle = "Software Engineer",
+                    Email = "eddfdsf@yahoo.com",
                     MonthlySalary = 60000
                     ,Department = departments[0]
                     ,HireDate = new DateOnly(2020, 1, 15),

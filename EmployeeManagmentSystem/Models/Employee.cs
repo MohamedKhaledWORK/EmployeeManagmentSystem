@@ -10,7 +10,6 @@ namespace EmployeeManagementSystem.Models
     public class Employee : BaseClass
     {
 
-        public string Name { get; set; }
         public string? Email { get; set; }
         public Department Department { get; set; }
         public string JobTitle { get; set; }
@@ -20,6 +19,11 @@ namespace EmployeeManagementSystem.Models
         public override string ToString()
         {
            return $"Employee ID: {Id}, Name: {Name}, Email: {Email}, Department: {Department?.Name}, Job Title: {JobTitle}, Hire Date: {HireDate}, Monthly Salary: {MonthlySalary:C}, Employment Status: {EmploymentStatus}";
+        }
+
+        public static explicit operator Employee(List<BaseClass> v)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -8,6 +8,6 @@ namespace EmployeeManagementSystem.Models
 {
     public enum EmployeeStatus
     {
-        Active, Suspended, Resigned
+        Active, Suspended, Resigned , Inactive
     }
 }

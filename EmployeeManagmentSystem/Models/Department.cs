@@ -8,7 +8,6 @@ namespace EmployeeManagementSystem.Models
 {
     public class Department : BaseClass
     {
-        public string Name { get; set; }
 
         public override string ToString()
         {

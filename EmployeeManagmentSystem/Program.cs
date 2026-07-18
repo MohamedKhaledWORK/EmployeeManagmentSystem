@@ -1,4 +1,5 @@
-﻿using EmployeeManagementSystem.UI;
+﻿using EmployeeManagementSystem.Storage;
+using EmployeeManagementSystem.UI;
 
 namespace EmployeeManagementSystem
 {
@@ -6,6 +7,8 @@ namespace EmployeeManagementSystem
     {
         static void Main(string[] args)
         {
+            DataSEED.SeedData();
+            var resolver = StorageBootstrap.CreateDefault();
             SystemFlow.Run();
         }
     }

@@ -35,7 +35,7 @@ namespace EmployeeManagementSystem.Repository
             var entit = Entites.FirstOrDefault(x=> x.Id == entity.Id);
             if (entit != null)
             {
-                Entites.Remove(entity);
+                Entites.Remove(entit);
                 _storage.Save(Entites);
             }
             else 
